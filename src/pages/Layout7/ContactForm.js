@@ -12,24 +12,42 @@ const ContactForm = () => {
     phone: "",
     email: "",
     address: "",
-    category_id: "",
+    id: "",
     service_id: "",
+    moving_from: "",
+    moving_to: "",
     preferred_datetime: "",
     problem: "",
     images: [],
   });
 
   const [errors, setErrors] = useState({});
-  const [categories, setCategories] = useState([]);
   const [parentServices, setParentServices] = useState([]);
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [serviceLoading, setServiceLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "service_id") {
+      const parsed = value === "" ? "" : Number(value);
+      setFormData((prev) => ({ ...prev, service_id: parsed, id: "" }));
+      setServices([]);
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+      return;
+    }
+
+    if (name === "id") {
+      const parsed = value === "" ? "" : Number(value);
+      setFormData((prev) => ({ ...prev, id: parsed }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+      return;
+    }
+
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: "" });
-  }
+  };
 
   const onDateChange = (value, dateString) => {
     setFormData({ ...formData, preferred_datetime: dateString });
@@ -46,9 +64,16 @@ const ContactForm = () => {
     if (!formData.name) newErrors.name = "Name is required";
     if (!formData.phone) newErrors.phone = "Phone is required";
     if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.address) newErrors.address = "Address is required";
-    if (!formData.category_id) newErrors.category_id = "Category is required";
+    if (!formData.id) newErrors.id = "Category is required";
     if (!formData.service_id) newErrors.service_id = "Service is required";
+    if (formData.service_id === 2) {
+      if (!formData.address) newErrors.address = "Address is required";
+    } else if (formData.service_id === 1) {
+      if (!formData.moving_from)
+        newErrors.moving_from = "Moving from address is required";
+      if (!formData.moving_to)
+        newErrors.moving_to = "Moving to address is required";
+    }
     if (!formData.preferred_datetime)
       newErrors.preferred_datetime = "Date & time required";
     if (!formData.problem) newErrors.problem = "Problem description required";
@@ -93,8 +118,10 @@ const ContactForm = () => {
         phone: "",
         email: "",
         address: "",
-        category_id: "",
+        id: "",
         service_id: "",
+        moving_from: "",
+        moving_to: "",
         preferred_datetime: "",
         problem: "",
         images: [],
@@ -107,27 +134,51 @@ const ContactForm = () => {
   };
 
   const fetchParentServices = async () => {
-      try {
-        const response = await axios.get("https://dashboard.workmentogo.ca/getAllParentServices");
-        setParentServices([{name:'Select service', id:''} , ...(response.data.data || [])]);
-        fetchServices();
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
+    try {
+      const response = await axios.get(
+        "https://dashboard.workmentogo.ca/getAllParentServices"
+      );
+      const list = (response.data.data || []).map((it) => ({
+        ...it,
+        id:
+          it.id === "" || it.id === null || it.id === undefined
+            ? ""
+            : Number(it.id),
+      }));
+      setParentServices([{ name: "Select service", id: "" }, ...list]);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchServices = async () => {
-  try {
-    const response = await axios.get(`https://dashboard.workmentogo.ca/getAllServices/${formData.service_id}`);
-    setServices([{name:'Select categories', id:''} , ...(response.data.data || [])]);
-  } catch (error) {
-    console.error("Error fetching services:", error);
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setServiceLoading(true);
+      const response = await axios.get(
+        `https://dashboard.workmentogo.ca/getAllServices/${formData.service_id}`
+      );
+      const list = (response.data.data || []).map((it) => ({
+        ...it,
+        id:
+          it.id === "" || it.id === null || it.id === undefined
+            ? ""
+            : Number(it.id),
+      }));
+      setServices([{ name: "Select category", id: "" }, ...list]);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setServiceLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (formData.service_id) {
+      fetchServices();
+    }
+  }, [formData.service_id]);
 
   useEffect(() => {
     fetchParentServices();
@@ -189,31 +240,14 @@ const ContactForm = () => {
             </div>
 
             <div className="col-md-6 mb-3">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className={errors.address ? "is-invalid" : ""}
-                placeholder="e.g. House #12, Street 4 (Home or Office Address)"
-              />
-
-              {errors.address && (
-                <div className="invalid-feedback">{errors.address}</div>
-              )}
-            </div>
-
-            <div className="col-md-6 mb-3">
               <Form.Label>Service</Form.Label>
               <Form.Select
                 name="service_id"
                 value={formData.service_id}
                 onChange={handleChange}
                 className={errors.service_id ? "is-invalid" : ""}
-                // disabled={!formData.category_id}
               >
-                {parentServices && parentServices.length <= 1  ? (
+                {parentServices && parentServices.length <= 1 ? (
                   <option>No Services found</option>
                 ) : (
                   parentServices?.map((item) => (
@@ -231,12 +265,13 @@ const ContactForm = () => {
             <div className="col-md-6 mb-3">
               <Form.Label>Category</Form.Label>
               <Form.Select
-                name="category_id"
-                value={formData.category_id}
+                name="id"
+                value={formData.id}
                 onChange={handleChange}
-                className={errors.category_id ? "is-invalid" : ""}
+                className={errors.id ? "is-invalid" : ""}
+                disabled={!formData.service_id}
               >
-                {loading ? (
+                {serviceLoading ? (
                   <option>Loading categories...</option>
                 ) : services && services.length <= 1 ? (
                   <option>No Categories found</option>
@@ -248,12 +283,62 @@ const ContactForm = () => {
                   ))
                 )}
               </Form.Select>
-              {errors.category_id && (
-                <div className="invalid-feedback">{errors.category_id}</div>
-              )}
+              {errors.id && <div className="invalid-feedback">{errors.id}</div>}
             </div>
 
-           
+            {formData.service_id === 2 && (
+              <div className="col-md-6 mb-3">
+                <Form.Label>Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className={errors.address ? "is-invalid" : ""}
+                  placeholder="e.g. House #12, Street 4 (Home or Office Address)"
+                />
+
+                {errors.address && (
+                  <div className="invalid-feedback">{errors.address}</div>
+                )}
+              </div>
+            )}
+
+            {formData.service_id === 1 && (
+              <>
+                <div className="col-md-6 mb-3">
+                  <Form.Label>Moving From</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="moving_from"
+                    value={formData.moving_from}
+                    onChange={handleChange}
+                    className={errors.moving_from ? "is-invalid" : ""}
+                    placeholder="e.g. House #12, Street 4 (Home or Office Address)"
+                  />
+
+                  {errors.moving_from && (
+                    <div className="invalid-feedback">{errors.moving_from}</div>
+                  )}
+                </div>
+
+                <div className="col-md-6 mb-3">
+                  <Form.Label>Moving To</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="moving_to"
+                    value={formData.moving_to}
+                    onChange={handleChange}
+                    className={errors.moving_to ? "is-invalid" : ""}
+                    placeholder="e.g. House #12, Street 4 (Home or Office Address)"
+                  />
+
+                  {errors.moving_to && (
+                    <div className="invalid-feedback">{errors.moving_to}</div>
+                  )}
+                </div>
+              </>
+            )}
 
             <div className="col-md-12 mb-3">
               <Form.Label>Select a Date and Time</Form.Label>
