@@ -152,7 +152,7 @@ export default function ServicesSection() {
         </div>
         <div className="row g-4 mb-5 justify-content-center">
           {movingServices.map((s) => (
-            <div key={s.title} className="col-12 col-md-4">
+            <div key={s.title} className="col-12 col-md-3">
               <ServiceCard {...s} />
             </div>
           ))}
@@ -186,7 +186,7 @@ export default function ServicesSection() {
 
             <div className="row g-4 justify-content-center">
               {handymanServices.map((s) => (
-                <div key={s.title} className="col-12 col-md-4">
+                <div key={s.title} className="col-12 col-md-3">
                   <ServiceCard {...s} />
                 </div>
               ))}
