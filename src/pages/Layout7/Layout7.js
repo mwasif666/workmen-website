@@ -5,6 +5,7 @@ import Chooseus from "../../component/Chooseus";
 import Testimonials from "./Testimonial";
 import ContactForm from "./ContactForm";
 import Lines from "./Lines";
+import FormSection2 from "./FormSection2";
 
 // Import Sections
 const Navbar = React.lazy(() => import("../../component/Navbar/NavBar"));
@@ -40,9 +41,9 @@ class Layout7 extends Component {
           <Services />
 
           <Lines />
-
           <Chooseus />
           <Solution />
+          <FormSection2 />
           <Testimonials />
           <ContactForm />
           <Switch />
