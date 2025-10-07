@@ -1,0 +1,95 @@
+.headersmall {
+  color: var(--main);
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 30px;
+}
+.BlogHeading {
+  display: flex;
+  justify-content: center;
+}
+.headerMain {
+  font-size: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  color: var(--main);
+  padding-bottom: 30px;
+  max-width: 1050px;
+  line-height: 102%;
+}
+
+.para {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--main);
+  padding-top: 10px;
+  max-width: 900px;
+}
+.solution {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(../../assets/images/slide.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 90vh;
+  text-align: center;
+  border-radius: 30px;
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+.texting h2 {
+  font-size: 2.6rem;
+  color: var(--main);
+  font-weight: 700;
+  padding: 20px 0px;
+}
+.texting p {
+  font-size: 1.4rem;
+  color: var(--main);
+  line-height: 30px;
+}
+.listHeading {
+  color: var(--main);
+  font-size: 1.6rem;
+  border-bottom: 3px solid var(--main);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+.customList li::marker {
+  color: var(--main);
+
+  padding-left: 20px;
+}
+.customList {
+  list-style-type: disc; /* normal bullet hi rahe */
+  padding-left: 1.5rem; /* list ko thoda indent do */
+}
+
+.customList li {
+  padding-left: 0.75rem; /* 👈 bullet ke baad text door hoga */
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+}
+
+.benefitsList li {
+  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+.benefitsList li:before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  color: var(--main);
+  font-size: 1.5rem;
+  font-weight: 800;
+  bottom: -05px;
+}

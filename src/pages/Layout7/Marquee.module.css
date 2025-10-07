@@ -1,0 +1,58 @@
+.marqueePart {
+  flex-shrink: 0;
+  padding: 0 4px;
+  font-smooth: always;
+}
+
+.marquee33 {
+  background: #02492e;
+  color: #eee;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.667vw;
+  padding: 32px 0;
+  position: relative;
+  overflow: hidden;
+  transform: rotate(-2deg);
+  width: 110%;
+  right: 10px;
+  top: 181px !important;
+  font-family: "roboto";
+  font-weight: 500;
+}
+
+.marquee22 {
+  font-family: "roboto";
+  font-weight: 500;
+  background: black;
+  color: #eee;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.667vw;
+  padding: 32px 0;
+  position: relative;
+  overflow: hidden;
+  transform: rotate(2deg);
+  width: 110%;
+  right: 10px;
+}
+
+.marqueeInner {
+  -webkit-font-smoothing: antialiased;
+  width: fit-content;
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+}
+
+.mainMarqueeDiv {
+  height: 350px;
+  overflow: hidden;
+}
+
+/* Global styles would typically go in a separate global CSS file */
+:global(*) {
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+}

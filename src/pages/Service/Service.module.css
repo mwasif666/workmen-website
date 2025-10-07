@@ -1,0 +1,36 @@
+.headerdiv,
+.paradiv {
+  display: flex;
+  justify-content: center;
+}
+
+.headerMain {
+  font-size: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  color: var(--main);
+  padding-top: 150px;
+  padding-bottom: 30px;
+  max-width: 650px;
+  line-height: 102%;
+}
+.headerPara {
+  color: var(--main);
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.para {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--main);
+  padding-top: 60px;
+  max-width: 550px;
+}
+@media all and (min-width: 300px) and (max-width: 769px) {
+  .headerMain {
+    font-size: 2.2rem;
+  }
+}

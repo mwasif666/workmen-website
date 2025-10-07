@@ -1,0 +1,156 @@
+:root {
+  --cream: #f6efe8; /* soft parchment background */
+  --green: #2a7a59; /* accent outline */
+  --green-700: #1f6248;
+  --text: #0e3a2d; /* dark ink text */
+  --muted: #6b7d75;
+  --shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+}
+
+.wrapper {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  padding: 30px 60px !important;
+}
+
+.card {
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.byline {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.role {
+  font-weight: 600;
+  color: var(--green-700);
+  font-size: 0.95rem;
+}
+
+.bio {
+  font-size: 0.9rem;
+  line-height: 1.35rem;
+  color: var(--muted);
+  max-width: 32ch;
+}
+
+.metaLabel {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.metaValue {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.metaLabelold {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.metaValueold {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.pill {
+  display: inline;
+  border: 1.5px solid var(--green);
+  color: var(--green-700);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  vertical-align: middle;
+  align-items: center;
+}
+.pill svg {
+  font-size: 1.2rem;
+}
+
+.ctaButton {
+  border: 2px solid var(--green);
+  color: var(--green-700);
+  background: transparent;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 700;
+}
+
+.ctaButton:hover,
+.ctaButton:focus {
+  background: var(--green);
+  color: white;
+}
+
+.social {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--green-700);
+  background: white;
+}
+
+.social:hover {
+  filter: brightness(0.95);
+}
+
+.whatsapp {
+  color: #25d366;
+}
+.linkedin {
+  color: #0a66c2;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+}
+.iconBtn svg {
+  border: none;
+  background: var(--main); /* light green */
+  color: white;
+  border-radius: 5px;
+  /* padding: 8px; */
+  font-weight: 700;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 767.98px) {
+  .bio {
+    max-width: none;
+  }
+  .ctaButton {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}

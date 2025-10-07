@@ -1,0 +1,75 @@
+.CustomCare {
+  font-size: 3rem;
+  color: var(--main);
+  text-align: center;
+  padding: 60px 0px;
+}
+.accordionContainer {
+  border-radius: 20px;
+}
+.googeMap {
+  /* border-radius: 20px !important;   */
+  overflow: hidden !important;
+  position: relative;
+}
+/* .Formsection {
+  position: absolute;
+  bottom: 0;
+} */
+.accordionItem {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 0px !important;
+}
+
+.accordionHeader {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: var(--main) !important;
+}
+
+.accordionHeader:hover {
+  background-color: white;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: var(--main) !important;
+  padding-top: 10px;
+}
+
+.headerImage {
+  width: 100px;
+  height: 100%;
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.headerTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.accordionBody {
+  padding: 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* responsive */
+
+@media all and (min-width: 300px) and (max-width: 769px) {
+  .CustomCare {
+    font-size: 2rem;
+  }
+  .headerTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}

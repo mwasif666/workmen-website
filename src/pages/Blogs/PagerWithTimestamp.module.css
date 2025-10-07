@@ -1,0 +1,87 @@
+/* Color tuned to a crisp green similar to the screenshot */
+:root {
+  --accent: #02492e; /* bootstrap 'success' */
+  --accent-strong: #02492e; /* slightly deeper for hover/focus ring */
+  --text-main: #02492e; /* green-ish timestamp */
+  --text-subtle: #7a8a8a; /* subtle label */
+}
+
+.wrapper {
+  /* give breathing room similar to the screenshot’s white space */
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.bar {
+  justify-content: space-between;
+  width: 100%;
+  /* makes left/right items stay at edges while center stays centered */
+}
+
+.pillBtn {
+  padding: 10px 22px;
+  border-width: 2px;
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.pillBtn:hover,
+.pillBtn:focus {
+  color: #fff !important;
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.pillBtn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.2);
+}
+
+.readMoreButton {
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--main);
+  cursor: pointer;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 30px;
+  font-weight: 700;
+  border: 1px solid var(--main);
+  transition: transform 0.3s ease;
+}
+.readMoreButton:hover {
+  background-color: var(--main);
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  font-weight: 700;
+  border: 1px solid var(--main);
+}
+.readMoreButton svg {
+  font-size: 1.3rem;
+}
+.subtleLabel {
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-subtle);
+  margin-bottom: 6px;
+  text-transform: none;
+  letter-spacing: 0.1px;
+}
+
+.timeText {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.2px;
+}

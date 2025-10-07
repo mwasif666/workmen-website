@@ -1,0 +1,75 @@
+.section {
+  padding: 56px 0 40px;
+}
+.title {
+  font-weight: 800;
+  font-size: clamp(28px, 2.8vw, 42px);
+  color: #0f5132; /* deep green */
+  letter-spacing: 0.3px;
+}
+.subheading {
+  max-width: 980px;
+  font-size: clamp(14px, 1.2vw, 18px);
+  color: #374151; /* slate-700 */
+}
+
+/* Card styling similar to screenshot */
+.card {
+  border-radius: 20px !important;
+  background: #f7efe9 !important;
+}
+
+.avatarWrap {
+  width: 110px;
+  height: 130px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.name {
+  color: #0c4f37; /* dark emerald */
+  font-weight: 700;
+}
+.role {
+  color: #0c7a4e; /* accent green */
+  font-weight: 600;
+}
+.blurb {
+  color: #4b5563; /* slate-600 */
+  line-height: 1.5;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+}
+.iconBtn svg {
+  border: none;
+  background: var(--main); /* light green */
+  color: white;
+  border-radius: 5px;
+  /* padding: 8px; */
+  font-weight: 700;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.swiperWrap :global(.swiper-button-prev),
+.swiperWrap :global(.swiper-button-next) {
+  color: #0c7a4e;
+}
+.swiperWrap :global(.swiper-pagination-bullet-active) {
+  background: #0c7a4e;
+}

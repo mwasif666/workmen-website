@@ -1,0 +1,111 @@
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0px 50px;
+}
+
+.card {
+  background-color: transparent;
+  padding: 25px 70px !important;
+  border-radius: 30px;
+  border: 1px solid #efe8e4;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer; /* Optional: for visual indication */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.heading {
+  font-size: 3rem;
+  color: #02492e; /* Green color */
+  font-weight: bold;
+  max-width: 350px;
+}
+
+.subHeading {
+  font-size: 1.1rem;
+  color: var(--main);
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.readMoreButton {
+  background-color: transparent;
+  font-size: 1rem;
+  color: #006400;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  font-weight: 700;
+  border: 1px solid var(--main);
+}
+.readMoreButton svg {
+  font-size: 1.6rem;
+}
+.arrowButton {
+  background-color: transparent;
+  font-size: 1.6rem;
+  color: #006400;
+  cursor: pointer;
+  border: 1px solid var(--main);
+  border-radius: 50%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 20px; */
+  width: 50px;
+  height: 50px;
+  position: relative;
+  left: 30px;
+}
+
+.readMoreButton {
+  opacity: 0; /* Initially hidden */
+  transform: translateX(-10px); /* Start position */
+  visibility: hidden; /* Initially hidden */
+}
+
+.card:hover {
+  background-color: #f7efe9;
+}
+.card:hover .arrowButton {
+  opacity: 0; /* Hide the arrow when the card is hovered */
+  transform: translateX(-10px); /* Optional: move it out slightly */
+}
+
+.card:hover .readMoreButton {
+  opacity: 1; /* Make the "Read More" button visible */
+  visibility: visible; /* Make the "Read More" button visible */
+  transform: translateX(-80px); /* Bring the button to the normal position */
+}
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+  .card {
+    padding: 20px 30px !important;
+  }
+  .cardRow {
+    padding: 0px 15px;
+  }
+  .arrowButton {
+    left: 0;
+  }
+  .card:hover .readMoreButton {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50px);
+  }
+}

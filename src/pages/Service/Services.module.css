@@ -1,0 +1,153 @@
+.services {
+  padding: 60px 0px;
+  background-color: #fff;
+  position: relative;
+}
+
+.heading {
+  font-size: 4rem;
+  color: var(--main);
+  margin-bottom: 20px;
+}
+
+.paddingservices {
+  position: relative;
+  top: 20px;
+}
+
+.description {
+  color: var(--main);
+  line-height: 1.6;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.sliderOuterContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.sliderContainer {
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  padding: 0 15px;
+}
+
+.swiper {
+  padding: 20px 0px;
+}
+
+.swiper-slide {
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.card {
+  border-radius: 10px;
+  height: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin: 0 1px;
+}
+
+.cardContent {
+  padding: 20px;
+}
+
+.image {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+.navBtn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #013220;
+  color: #013220;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.navBtn:hover {
+  background: var(--main);
+  color: #fff;
+}
+
+.exploreBtn {
+  border: 1px solid #00894f;
+  background-color: white;
+  color: var(--main);
+  padding: 15px 30px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.exploreBtn:hover {
+  background-color: var(--main);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .heading {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 28px;
+  }
+
+  .description {
+    margin-bottom: 20px;
+    padding-right: 0;
+  }
+
+  .sliderContainer {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sliderContainer {
+    width: calc(100% + 10px);
+    margin-left: -5px;
+    padding: 0 5px;
+  }
+
+  .swiper-slide {
+    padding: 0 5px;
+  }
+}
+.lastcontact {
+  font-size: 1.8rem;
+  color: var(--main);
+}
+.exploreBtn {
+  background-color: var(--main) !important;
+  color: white !important;
+  font-weight: bolder;
+  border: none;
+  border-radius: 30px !important;
+}
+.exploreBtn:hover {
+  background-color: white !important;
+  color: var(--main) !important;
+  font-weight: bolder;
+  border: 2px solid var(--main) !important;
+}
