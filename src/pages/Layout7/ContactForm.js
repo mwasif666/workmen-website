@@ -21,24 +21,15 @@ const ContactForm = () => {
 
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
+  const [parentServices, setParentServices] = useState([]);
   const [services, setServices] = useState([]);
-  const [filteredServices, setFilteredServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: "" });
-
-    // If category changes, reset service_id and filter services
-    if (name === "category_id") {
-      setFormData((prev) => ({ ...prev, service_id: "" }));
-      const filtered = services.filter(
-        (service) => service.category_id === value
-      );
-      setFilteredServices(filtered);
-    }
-  };
+  }
 
   const onDateChange = (value, dateString) => {
     setFormData({ ...formData, preferred_datetime: dateString });
@@ -109,39 +100,37 @@ const ContactForm = () => {
         images: [],
       });
       setErrors({});
-      setFilteredServices([]);
     } catch (error) {
       console.error("Error submitting form:", error);
       message.error("Something went wrong. Please try again.");
     }
   };
 
-  useEffect(() => {
-    const fetchCategoriesAndServices = async () => {
+  const fetchParentServices = async () => {
       try {
-        // Fetch categories
-        const categoriesResponse = await axios.get(
-          "https://dashboard.workmentogo.ca/getAllCategories"
-        );
-
-        // Fetch services
-        const servicesResponse = await axios.get(
-          "https://dashboard.workmentogo.ca/getAllServices"
-        );
-
-        setCategories([
-          { name: "Select category", id: "" },
-          ...(categoriesResponse.data.data || []),
-        ]);
-        setServices(servicesResponse.data.data || []);
+        const response = await axios.get("https://dashboard.workmentogo.ca/getAllParentServices");
+        setParentServices([{name:'Select service', id:''} , ...(response.data.data || [])]);
+        fetchServices();
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching services:", error);
       } finally {
         setLoading(false);
       }
     };
+  
+  const fetchServices = async () => {
+  try {
+    const response = await axios.get(`https://dashboard.workmentogo.ca/getAllServices/${formData.service_id}`);
+    setServices([{name:'Select categories', id:''} , ...(response.data.data || [])]);
+  } catch (error) {
+    console.error("Error fetching services:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
-    fetchCategoriesAndServices();
+  useEffect(() => {
+    fetchParentServices();
   }, []);
 
   return (
@@ -215,7 +204,30 @@ const ContactForm = () => {
               )}
             </div>
 
-            {/* Category Selection */}
+            <div className="col-md-6 mb-3">
+              <Form.Label>Service</Form.Label>
+              <Form.Select
+                name="service_id"
+                value={formData.service_id}
+                onChange={handleChange}
+                className={errors.service_id ? "is-invalid" : ""}
+                // disabled={!formData.category_id}
+              >
+                {parentServices && parentServices.length <= 1  ? (
+                  <option>No Services found</option>
+                ) : (
+                  parentServices?.map((item) => (
+                    <option key={item?.id} value={item?.id}>
+                      {item?.name}
+                    </option>
+                  ))
+                )}
+              </Form.Select>
+              {errors.service_id && (
+                <div className="invalid-feedback">{errors.service_id}</div>
+              )}
+            </div>
+
             <div className="col-md-6 mb-3">
               <Form.Label>Category</Form.Label>
               <Form.Select
@@ -226,10 +238,10 @@ const ContactForm = () => {
               >
                 {loading ? (
                   <option>Loading categories...</option>
-                ) : categories && categories.length === 0 ? (
-                  <option>No categories found</option>
+                ) : services && services.length <= 1 ? (
+                  <option>No Categories found</option>
                 ) : (
-                  categories?.map((item) => (
+                  services?.map((item) => (
                     <option key={item?.id} value={item?.id}>
                       {item?.name}
                     </option>
@@ -241,31 +253,7 @@ const ContactForm = () => {
               )}
             </div>
 
-            {/* Services Dropdown - Only shows services from selected category */}
-            <div className="col-md-6 mb-3">
-              <Form.Label>Services</Form.Label>
-              <Form.Select
-                name="service_id"
-                value={formData.service_id}
-                onChange={handleChange}
-                className={errors.service_id ? "is-invalid" : ""}
-                disabled={!formData.category_id}
-              >
-                <option value="">Select service</option>
-                {filteredServices && filteredServices.length === 0 ? (
-                  <option>No services available for this category</option>
-                ) : (
-                  filteredServices?.map((item) => (
-                    <option key={item?.id} value={item?.id}>
-                      {item?.name}
-                    </option>
-                  ))
-                )}
-              </Form.Select>
-              {errors.service_id && (
-                <div className="invalid-feedback">{errors.service_id}</div>
-              )}
-            </div>
+           
 
             <div className="col-md-12 mb-3">
               <Form.Label>Select a Date and Time</Form.Label>
