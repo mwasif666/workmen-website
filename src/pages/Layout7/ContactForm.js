@@ -13,7 +13,7 @@ const ContactForm = () => {
     email: "",
     address: "",
     id: "",
-    service_id: "",
+    parent_service_id: "",
     moving_from: "",
     moving_to: "",
     preferred_datetime: "",
@@ -30,9 +30,9 @@ const ContactForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "service_id") {
+    if (name === "parent_service_id") {
       const parsed = value === "" ? "" : Number(value);
-      setFormData((prev) => ({ ...prev, service_id: parsed, id: "" }));
+      setFormData((prev) => ({ ...prev, parent_service_id: parsed, id: "" }));
       setServices([]);
       setErrors((prev) => ({ ...prev, [name]: "" }));
       return;
@@ -65,10 +65,10 @@ const ContactForm = () => {
     if (!formData.phone) newErrors.phone = "Phone is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.id) newErrors.id = "Category is required";
-    if (!formData.service_id) newErrors.service_id = "Service is required";
-    if (formData.service_id === 2) {
+    if (!formData.parent_service_id) newErrors.parent_service_id = "Service is required";
+    if (formData.parent_service_id === 2) {
       if (!formData.address) newErrors.address = "Address is required";
-    } else if (formData.service_id === 1) {
+    } else if (formData.parent_service_id === 1) {
       if (!formData.moving_from)
         newErrors.moving_from = "Moving from address is required";
       if (!formData.moving_to)
@@ -98,6 +98,9 @@ const ContactForm = () => {
             data.append("images[]", file);
           });
         } else {
+          if(key === 'id'){
+            data.append('service_id', formData[key]);
+          }
           data.append(key, formData[key]);
         }
       });
@@ -119,7 +122,7 @@ const ContactForm = () => {
         email: "",
         address: "",
         id: "",
-        service_id: "",
+        parent_service_id: "",
         moving_from: "",
         moving_to: "",
         preferred_datetime: "",
@@ -157,7 +160,7 @@ const ContactForm = () => {
     try {
       setServiceLoading(true);
       const response = await axios.get(
-        `https://dashboard.workmentogo.ca/getAllServices/${formData.service_id}`
+        `https://dashboard.workmentogo.ca/getAllServices/${formData.parent_service_id}`
       );
       const list = (response.data.data || []).map((it) => ({
         ...it,
@@ -175,10 +178,10 @@ const ContactForm = () => {
   };
 
   useEffect(() => {
-    if (formData.service_id) {
+    if (formData.parent_service_id) {
       fetchServices();
     }
-  }, [formData.service_id]);
+  }, [formData.parent_service_id]);
 
   useEffect(() => {
     fetchParentServices();
@@ -242,10 +245,10 @@ const ContactForm = () => {
             <div className="col-md-6 mb-3">
               <Form.Label>Service</Form.Label>
               <Form.Select
-                name="service_id"
-                value={formData.service_id}
+                name="parent_service_id"
+                value={formData.parent_service_id}
                 onChange={handleChange}
-                className={errors.service_id ? "is-invalid" : ""}
+                className={errors.parent_service_id ? "is-invalid" : ""}
               >
                 {parentServices && parentServices.length <= 1 ? (
                   <option>No Services found</option>
@@ -257,8 +260,8 @@ const ContactForm = () => {
                   ))
                 )}
               </Form.Select>
-              {errors.service_id && (
-                <div className="invalid-feedback">{errors.service_id}</div>
+              {errors.parent_service_id && (
+                <div className="invalid-feedback">{errors.parent_service_id}</div>
               )}
             </div>
 
@@ -269,7 +272,7 @@ const ContactForm = () => {
                 value={formData.id}
                 onChange={handleChange}
                 className={errors.id ? "is-invalid" : ""}
-                disabled={!formData.service_id}
+                disabled={!formData.parent_service_id}
               >
                 {serviceLoading ? (
                   <option>Loading categories...</option>
@@ -286,7 +289,7 @@ const ContactForm = () => {
               {errors.id && <div className="invalid-feedback">{errors.id}</div>}
             </div>
 
-            {formData.service_id === 2 && (
+            {formData.parent_service_id === 2 && (
               <div className="col-md-6 mb-3">
                 <Form.Label>Address</Form.Label>
                 <Form.Control
@@ -304,7 +307,7 @@ const ContactForm = () => {
               </div>
             )}
 
-            {formData.service_id === 1 && (
+            {formData.parent_service_id === 1 && (
               <>
                 <div className="col-md-6 mb-3">
                   <Form.Label>Moving From</Form.Label>
