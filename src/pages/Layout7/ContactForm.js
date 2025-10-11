@@ -65,7 +65,8 @@ const ContactForm = () => {
     if (!formData.phone) newErrors.phone = "Phone is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.id) newErrors.id = "Category is required";
-    if (!formData.parent_service_id) newErrors.parent_service_id = "Service is required";
+    if (!formData.parent_service_id)
+      newErrors.parent_service_id = "Service is required";
     if (formData.parent_service_id === 2) {
       if (!formData.address) newErrors.address = "Address is required";
     } else if (formData.parent_service_id === 1) {
@@ -98,8 +99,8 @@ const ContactForm = () => {
             data.append("images[]", file);
           });
         } else {
-          if(key === 'id'){
-            data.append('service_id', formData[key]);
+          if (key === "id") {
+            data.append("service_id", formData[key]);
           }
           data.append(key, formData[key]);
         }
@@ -261,7 +262,9 @@ const ContactForm = () => {
                 )}
               </Form.Select>
               {errors.parent_service_id && (
-                <div className="invalid-feedback">{errors.parent_service_id}</div>
+                <div className="invalid-feedback">
+                  {errors.parent_service_id}
+                </div>
               )}
             </div>
 
@@ -343,7 +346,7 @@ const ContactForm = () => {
               </>
             )}
 
-            <div className="col-md-12 mb-3">
+            <div className="col-md-6 mb-3">
               <Form.Label>Select a Date and Time</Form.Label>
               <DatePicker
                 showTime
@@ -361,14 +364,22 @@ const ContactForm = () => {
             </div>
 
             <div className="col-12 mb-3">
-              <Form.Label>Problem</Form.Label>
+              <Form.Label>
+                {formData.parent_service_id === 1
+                  ? "Number of Items to Move"
+                  : "Problem"}
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
                 name="problem"
                 value={formData.problem}
                 onChange={handleChange}
-                placeholder="Describe your issue..."
+                placeholder={
+                  formData.parent_service_id === 1
+                    ? "Enter number of Items and Descriptions of Items"
+                    : "Describe your issue..."
+                }
                 className={errors.problem ? "is-invalid" : ""}
               />
               {errors.problem && (
