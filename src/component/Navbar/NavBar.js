@@ -120,7 +120,7 @@ const NavbarPage = () => {
               }}
               onClick={handleNavClick}
             >
-              Badaruddin
+              Workmentogo
             </Link>
           </div>
         </OffcanvasHeader>

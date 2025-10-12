@@ -193,7 +193,7 @@ export default function ServicesSection() {
                 </div>
                 <div className="col-lg-6 text-end">
                   {" "}
-                  <Link to="/service" className={styles.ctaBtn}>
+                  <Link to="/booking" className={styles.ctaBtn}>
                     Book A Service Now
                   </Link>
                 </div>
