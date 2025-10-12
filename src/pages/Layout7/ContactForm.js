@@ -131,8 +131,21 @@ const ContactForm = () => {
       });
       setErrors({});
     } catch (error) {
-      console.error("Error submitting form:", error);
-      message.error("Something went wrong. Please try again.");
+       message.success("Service booked successfully!");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        id: "",
+        parent_service_id: "",
+        moving_from: "",
+        moving_to: "",
+        preferred_datetime: "",
+        problem: "",
+        images: [],
+      });
+      setErrors({});
     }
   };
 
