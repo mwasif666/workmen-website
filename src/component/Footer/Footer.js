@@ -94,29 +94,10 @@ class Footer extends Component {
                   <ul className="list-unstyled footer-sub-menu">
                     <li>
                       <Link className="footer-link" to="/service">
-                        Packing
+                        Moving (Local & out of Province)
                       </Link>
                     </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Unpacking
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Loading
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Unloading
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Moving
-                      </Link>
-                    </li>
+
                     <li>
                       <Link className="footer-link" to="/service">
                         Junk Removal
@@ -124,24 +105,10 @@ class Footer extends Component {
                     </li>
                     <li>
                       <Link className="footer-link" to="/service">
-                        Boxes Packing
+                        Moving supplies(all types of moving supplies)
                       </Link>
                     </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Wrapping Paper
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Stretch Wraps
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="footer-link" to="/service">
-                        Bubble Wraps
-                      </Link>
-                    </li>
+
                     <li>
                       <Link className="footer-link" to="/service">
                         Handymen

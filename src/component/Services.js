@@ -22,35 +22,51 @@ import imgsvg from "./../assets/images/services/Icon.svg";
 // ✅ Moving Services
 const movingServices = [
   {
-    title: "Packing",
-    img: img6,
-    desc: "Safe and secure packing of all household and office items.",
-  },
-  {
-    title: "Unpacking",
-    img: img7,
-    desc: "Organized unpacking services to set up your new place quickly.",
-  },
-  {
-    title: "Loading",
-    img: img8,
-    desc: "Careful loading of goods with the right equipment to prevent damage.",
-  },
-  {
-    title: "Unloading",
-    img: img9,
-    desc: "Safe unloading of your belongings at the destination with full care.",
-  },
-  {
-    title: "Moving",
+    title: "Moving (Local & out of Province)",
     img: img10,
-    desc: "Professional local and long-distance moving services.",
+    desc: "Packing, Unpacking, Loading, Unloading",
   },
+  {
+    title: "Junk Removal",
+    img: img15,
+    desc: "",
+  },
+  {
+    title: "Moving supplies(all types of moving supplies)",
+    img: img14,
+    desc: "Bubble Wraps, Boxes Packing, Wrapping Paper, Stretch Wraps",
+  },
+  // {
+  //   title: "Packing",
+  //   img: img6,
+  //   desc: "Safe and secure packing of all household and office items.",
+  // },
+
+  // {
+  //   title: "Unpacking",
+  //   img: img7,
+  //   desc: "Organized unpacking services to set up your new place quickly.",
+  // },
+  // {
+  //   title: "Loading",
+  //   img: img8,
+  //   desc: "Careful loading of goods with the right equipment to prevent damage.",
+  // },
+  // {
+  //   title: "Unloading",
+  //   img: img9,
+  //   desc: "Safe unloading of your belongings at the destination with full care.",
+  // },
+];
+const junk = [
   {
     title: "Junk Removal",
     img: img15,
     desc: "Fast and reliable removal of unwanted items to keep your space clean.",
   },
+];
+
+const movingsuplies = [
   {
     title: "Boxes Packing",
     img: img14,
@@ -144,7 +160,7 @@ export default function ServicesSection() {
             </div>
             <div className="col-lg-6 text-end">
               {" "}
-              <Link to="/service" className={styles.ctaBtn}>
+              <Link to="/booking" className={styles.ctaBtn}>
                 Book A Service Now
               </Link>
             </div>
@@ -152,7 +168,7 @@ export default function ServicesSection() {
         </div>
         <div className="row g-4 mb-5 justify-content-center">
           {movingServices.map((s) => (
-            <div key={s.title} className="col-12 col-md-3">
+            <div key={s.title} className="col-12 col-md-4">
               <ServiceCard {...s} />
             </div>
           ))}
@@ -177,7 +193,7 @@ export default function ServicesSection() {
                 </div>
                 <div className="col-lg-6 text-end">
                   {" "}
-                  <Link to="/service" className={styles.ctaBtn}>
+                  <Link to="/booking" className={styles.ctaBtn}>
                     Book A Service Now
                   </Link>
                 </div>
