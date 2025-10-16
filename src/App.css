@@ -65,32 +65,56 @@ footer {
   border: none !important;
 }
 #navbar .container {
-  background-color: white;
   padding: 10px;
   border-radius: 40px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding-right: 20px;
 }
-#navbar {
-  padding-top: 40px;
-  position: absolute !important;
-  top: 0;
+.navbar-custom {
+  background-color: white !important;
+  color: white;
+  padding: 0 !important;
+}
+#mySidenav {
+  padding: 5px 20px;
+  border-radius: 30px;
+  gap: 20px;
+}
+.navbar .nav-btn {
+  background-color: var(--main) !important;
+  color: white !important;
+  padding: 12px 30px !important;
+}
+#mySidenav li a {
+  color: var(--main);
 }
 
-.navbar-brand {
-  position: relative;
+.navbar-collapse a.btn {
+  color: #1e0304;
+  padding: 15px 60px !important;
+  border-radius: 30px !important;
+  padding-top: 18px !important;
 }
-.navbar-brand .image-logo img {
-  position: absolute;
-  top: -10px;
-  left: 30px;
-  width: 125px;
-  height: 61px;
-  background-color: white;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  object-fit: contain;
+.logo-link {
+  color: white;
+  padding: 0px 40px !important;
+  border-radius: 30px !important;
+  /* padding-top: 18px !important; */
 }
+
+/* .nav-sticky.navbar {
+  margin-top: 0px !important;
+  color: #000 !important;
+}
+.nav-sticky.navbar .logo-link,
+.nav-sticky.navbar #mySidenav {
+  background-color: #008951 !important;
+  color: white !important;
+}
+
+.nav-sticky.navbar #mySidenav a {
+  color: white !important;
+} */
+
 .hero-7 h1 {
   font-size: 2.4rem;
   font-weight: 500;
@@ -105,9 +129,9 @@ footer {
   border-radius: 12px;
   z-index: 5;
 }
-#navbar:nth-child(2) {
+/* #navbar:nth-child(2) {
   display: none !important;
-}
+} */
 /* responsive */
 @media (max-width: 768px) {
   #navbar {
@@ -127,10 +151,47 @@ footer {
   .navbar > .container {
     width: 75% !important;
   }
-  #navbar:nth-child(2) {
-    display: none !important;
+  .logo-link {
+    padding: 0px 0px !important;
   }
+  .navbar .image-logo img {
+    width: 60px !important;
+    height: 60px;
+  }
+  /* #navbar:nth-child(2) {
+    display: none !important;
+  } */
   /* .fixed-top {
     left: -35px !important;
   } */
 }
+/* Normal desktop layout (default) */
+.datepicker-responsive {
+  width: 100%;
+}
+
+/* Adjust font size and padding for smaller screens */
+@media (max-width: 768px) {
+  .datepicker-responsive {
+    font-size: 14px;
+  }
+
+  /* Force date and time pickers to stack vertically */
+  .datepicker-responsive .ant-picker-panel-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Make sure both panels take full width */
+  .datepicker-responsive .ant-picker-date-panel,
+  .datepicker-responsive .ant-picker-time-panel {
+    width: 100% !important;
+  }
+
+  /* Reduce input size slightly */
+  .datepicker-responsive .ant-picker-input > input {
+    font-size: 13px !important;
+    height: 34px !important;
+  }
+}
+  

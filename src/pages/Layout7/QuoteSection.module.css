@@ -53,6 +53,9 @@
   width: 90%;
   font-weight: 800;
 }
+.FormSec {
+  overflow: hidden;
+}
 .spanlabel {
   color: #bcbcbc;
   font-size: 10px;

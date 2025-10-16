@@ -12,12 +12,12 @@ import {
 import "swiper/css";
 import "swiper/css/navigation";
 import styles from "./Testimonials.module.css";
-import t1 from "./../../assets/images/john.jpg";
-import t2 from "./../../assets/images/sarah.jpg";
+import t1 from "./../../assets/images/review3.jpg";
+import t2 from "./../../assets/images/review4.jpg";
 import t3 from "./../../assets/images/david.jpg";
-import t4 from "./../../assets/images/emily.jpg";
+import t4 from "./../../assets/images/review6.jpg";
 import t5 from "./../../assets/images/linda.jpg";
-import t6 from "./../../assets/images/george.jpg";
+import t6 from "./../../assets/images/review5.jpg";
 import t7 from "./../../assets/images/review1.jpg";
 import t8 from "./../../assets/images/review2.jpg";
 

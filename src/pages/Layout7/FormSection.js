@@ -34,7 +34,7 @@ const FormSection = () => {
                           <span className={styles.spanlabel}>Phone:</span>
                         </div>
                         <div className={styles.FormQuote}>
-                          <span>+1(437)5877072710</span>
+                          <span>+15877072710</span>
                           <button
                             className={styles.copyButton}
                             onClick={() => copyToClipboard("+1(437)5877072710")}

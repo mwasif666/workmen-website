@@ -132,7 +132,7 @@ const ContactForm = () => {
       });
       setErrors({});
     } catch (error) {
-       message.success("Service booked successfully!");
+      message.success("Service booked successfully!");
       setFormData({
         name: "",
         phone: "",
@@ -293,7 +293,9 @@ const ContactForm = () => {
                 {serviceLoading ? (
                   <option>Loading categories...</option>
                 ) : services && services.length <= 1 ? (
-                  <option>No Categories found</option>
+                  <option>
+                    Please select a service first to view its categories
+                  </option>
                 ) : (
                   services?.map((item) => (
                     <option key={item?.id} value={item?.id}>
@@ -361,14 +363,69 @@ const ContactForm = () => {
 
             <div className="col-md-6 mb-3">
               <Form.Label>Select a Date and Time</Form.Label>
-              <DatePicker
-                showTime
-                onChange={onDateChange}
-                className={`form-control ${
-                  errors.preferred_datetime ? "is-invalid" : ""
-                }`}
-                style={{ width: "100%" }}
-              />
+
+              {/* If mobile screen, use two pickers */}
+              <div className="d-md-none">
+                <DatePicker
+                  format="YYYY-MM-DD"
+                  placeholder="Select Date"
+                  onChange={(value, dateString) => {
+                    const newDate = dateString
+                      ? `${dateString} ${
+                          formData.preferred_datetime.split(" ")[1] || "00:00"
+                        }`
+                      : "";
+                    setFormData({ ...formData, preferred_datetime: newDate });
+                    setErrors({ ...errors, preferred_datetime: "" });
+                  }}
+                  className={`form-control mb-2 ${
+                    errors.preferred_datetime ? "is-invalid" : ""
+                  }`}
+                  style={{ width: "100%" }}
+                />
+
+                <DatePicker
+                  picker="time"
+                  format="HH:mm"
+                  placeholder="Select Time"
+                  onChange={(value, timeString) => {
+                    const newDate = formData.preferred_datetime
+                      ? `${
+                          formData.preferred_datetime.split(" ")[0] || ""
+                        } ${timeString}`
+                      : ` ${timeString}`;
+                    setFormData({
+                      ...formData,
+                      preferred_datetime: newDate.trim(),
+                    });
+                    setErrors({ ...errors, preferred_datetime: "" });
+                  }}
+                  className={`form-control ${
+                    errors.preferred_datetime ? "is-invalid" : ""
+                  }`}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              {/* Desktop version (combined date & time picker) */}
+              <div className="d-none d-md-block">
+                <DatePicker
+                  showTime={{ format: "HH:mm" }}
+                  format="YYYY-MM-DD HH:mm"
+                  onChange={(value, dateString) => {
+                    setFormData({
+                      ...formData,
+                      preferred_datetime: dateString,
+                    });
+                    setErrors({ ...errors, preferred_datetime: "" });
+                  }}
+                  className={`form-control datepicker-responsive ${
+                    errors.preferred_datetime ? "is-invalid" : ""
+                  }`}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
               {errors.preferred_datetime && (
                 <div className="invalid-feedback d-block">
                   {errors.preferred_datetime}

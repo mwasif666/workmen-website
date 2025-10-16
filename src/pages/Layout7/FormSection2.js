@@ -25,7 +25,7 @@ const FormSection2 = () => {
             }}
           >
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-8">
+              <div className="col-11 col-lg-8">
                 <div className={styles.cardContent}>
                   <h3 className="mb-3 text-center">Let's Connect</h3>
 
